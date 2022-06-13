@@ -1,10 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import {StrictMode}  from "react";
+import { createRoot } from "react-dom/client";
 import "./index.css";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
 
 //////////////////////////////////
 // Criando function Square
 /////////////////////////////////
+
 function Square(props) {
     return (
         <button className="square">
@@ -17,7 +21,8 @@ function Square(props) {
 //////////////////////////////////
 // Criando classe Board
 /////////////////////////////////
-class Board extends React.Component {
+
+class Board extends StrictMode.Component {
     renderSquare(i) {
         return (
             <Square
@@ -53,7 +58,7 @@ class Board extends React.Component {
 // Criando classe Game
 /////////////////////////////////
 
-class Game extends React.Component {
+class Game extends StrictMode.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -149,4 +154,8 @@ function calculateWinner(squares) {
     return null;
 }
 //==============================================================================
-ReactDOM.render(<Game />, document.getElementById("root"));
+root.render(
+  <StrictMode>
+    <Game />
+  </StrictMode>
+);
